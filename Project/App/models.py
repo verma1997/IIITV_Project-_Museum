@@ -8,6 +8,4 @@ class Project(models.Model):
     date=models.DateField(default=datetime.now())
     like=model.ManyToManyField('User')
 
-
-
 # Create your models here.
