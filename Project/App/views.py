@@ -9,8 +9,7 @@ from App.models import Project
 
 
 def index(request):
-    return HttpResponse("Home")
-
+    return render(request, 'index.html')
 
 
 class LoginFormView(View):
@@ -22,6 +21,7 @@ class LoginFormView(View):
     # sends query and form on request
     def get(self, request):
         form = self.form_class(None)
+        print(form)
         return render(request, self.template_name,
                       {'form': form})
 
@@ -39,10 +39,11 @@ class LoginFormView(View):
             if user is not None:
                 login(request, user)
                 messages.success(request, "Logged in Successfully")
+                print(request.user)
                 return redirect('/')
             else:
                 messages.error(request, "Incorrect Credentials")
-                return redirect('chat_app:login')
+                return redirect('App:login')
         else:
             messages.error(request, "Incorrect credentials")
             return render(request, self.template_name, {'form': form})
@@ -91,4 +92,4 @@ class RegisterFormView(View):
 def signout(request):
     """logs out the user on request"""
     logout(request)
-    return redirect('chat_app:index')
+    return redirect('App:index')

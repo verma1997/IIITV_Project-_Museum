@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 class LoginForm(forms.Form):
     """Provides form for User model"""
 
-    email = forms.CharField(label='email')
+    username = forms.CharField(label='username')
     password = forms.CharField(label='password', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['email', 'password']
+        fields = ['username', 'password']
 
 
 class RegisterForm(forms.ModelForm):
