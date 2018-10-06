@@ -10,3 +10,6 @@ class Project(models.Model):
     member=models.ForeignKey(User,on_delete=models.CASCADE)
     date=models.DateTimeField(auto_now_add=True)
     like=models.IntegerField(max_length=100)
+
+    def __str__(self):
+        return self.semester + "  " + self.course_name + " " + self.project_name

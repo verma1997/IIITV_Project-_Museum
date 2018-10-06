@@ -1,7 +1,8 @@
 from django.contrib import admin
-from django.urls import path
-from django.conf.urls import urls
+from django.conf.urls import include, url
+from App import views
 
+app_name = "App"
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    url(r'^home/', views.index, name='Index')
 ]
