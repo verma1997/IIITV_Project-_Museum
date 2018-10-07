@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^login/$', views.LoginFormView.as_view(), name='login'),
     url(r'^logout/$', views.signout, name='logout'),
     url(r'^about-us/$', views.AboutUs, name='aboutus'),
+    url(r'^project-form/$', views.ProjectFormView.as_view(), name='project-form')
 ]
