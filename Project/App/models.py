@@ -14,7 +14,7 @@ class Project(models.Model):
             ('SIX','VI'),
             ('SEVEN','VII'),
             ('EIGHT','VIII'),)
-    semester=models.CharField(max_length=100,choices=CHOICES,default='ONE')
+    semester=models.CharField(max_length=100,choices=CHOICES)
     course_name=models.CharField(max_length=100)
     project_name=models.CharField(max_length=100)
     project_description=models.TextField(max_length=100)
@@ -24,9 +24,9 @@ class Project(models.Model):
     student_mentor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='student_mentor')
     likes = models.ManyToManyField(User, related_name='likes', blank=True, null=True)
 
-    class Meta:
-        verbose_name = _("Project")
-        verbose_name_plural = _("Projects")
+    #class Meta:
+    #    verbose_name = _("Project")
+    #    verbose_name_plural = _("Projects")
 
     def __str__(self):
         return self.semester + "  " + self.course_name + " " + self.project_name
