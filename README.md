@@ -4,36 +4,39 @@ Often! right?
 
 This is a portal for IIITV, which provides project documentation done by previous students in various subjects.
 
-Installation (python 3.6)
-Get the requirements
-$ sudo apt-get install python3-pip
+### Installation (python 3.6)
+- Get the requirements
 
-Fork and clone the expenses-app repository
+`$ sudo apt-get install python3-pip`
 
-$ git clone https://github.com/<Username>/IIITV_Project-\_Museum
 
-Now get the django specific requirements
+- Fork and clone the expenses-app repository
 
-$ cd IIITV_Project-\_Museum
+	`$ git clone https://github.com/<Username>/IIITV_Project-_Museum`
 
-$ pip install django
+- Now get the django specific requirements
 
-Now run the server
+	`$ cd IIITV_Project-_Museum`
 
-$ python manage.py runserver
+  	`$ pip install django`
 
-open 127.0.0.1:8000 in the browser
+- Now run the server
 
-Apply the migrations(Already included for ease)
+	`$ python manage.py runserver`
 
-python manage.py makemigrations
+open [127.0.0.1:8000](127.0.0.1:8000) in the browser
 
-python manage.py migrate
 
-Create the admin
+- Apply the migrations(Already included for ease)
 
-python manage.py createsuperuser
+	`python manage.py makemigrations`
 
-Add the relevant information
+	`python manage.py migrate`
 
-open 127.0.0.1:8000/admin
+- Create the admin
+
+	`python manage.py createsuperuser`
+
+- Add the relevant information
+
+- open [127.0.0.1:8000/admin](127.0.0.1:8000/admin)
