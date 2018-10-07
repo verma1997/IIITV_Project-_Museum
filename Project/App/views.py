@@ -10,9 +10,15 @@ from App.models import Project
 
 
 def index(request):
-    project=Project()
-    p=Project.objects.all()
-    return render(request, 'index.html',{'project':p})
+    #project=Project()
+    projects=Project.objects.all()
+    return render(request, 'index.html',{'projects':projects})
+
+def project_detail(request, pk):
+    print(pk)
+    project = Project.objects.get(pk=pk)
+    print(project)
+    return render(request, './project_detail.html', {'project': project})
 
 class ProjectFormView(View):
     form_class = ProjectForm
@@ -157,4 +163,3 @@ def signout(request):
 
 def AboutUs(request):
     return render(request,'aboutus.html')
-  
