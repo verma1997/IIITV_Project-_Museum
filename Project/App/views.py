@@ -93,3 +93,6 @@ def signout(request):
     """logs out the user on request"""
     logout(request)
     return redirect('App:index')
+
+def AboutUs(request):
+    return HttpResponse("aboutus")
