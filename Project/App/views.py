@@ -5,10 +5,7 @@ from django.http import HttpResponse, Http404
 from django.views import View
 from App.forms import LoginForm, RegisterForm
 
-from App.forms import LoginForm, RegisterForm
-
 from App.forms import LoginForm, RegisterForm, ProjectForm
-
 from App.models import Project
 
 
@@ -16,6 +13,40 @@ def index(request):
     project=Project()
     p=Project.objects.all()
     return render(request, 'index.html',{'project':p})
+
+class ProjectFormView(View):
+    form_class = ProjectForm
+    template_name = 'form_project.html'
+
+    # sends query and form on request
+    def get(self, request):
+        form = self.form_class(None)
+        print(form)
+        return render(request, self.template_name,
+                      {'form': form})
+
+    # authenticates user request
+    def post(self, request):
+        pass
+        # form = self.form_class(request.POST)
+
+        # if form.is_valid():
+
+        #     username = form.cleaned_data['username']
+        #     password = form.cleaned_data['password']
+
+        #     user = authenticate(username=username, password=password)
+        #     print(user)
+        #     if user is not None:
+        #         login(request, user)
+        #         messages.success(request, "Logged in Successfully")
+        #         return redirect('/')
+        #     else:
+        #         messages.error(request, "Incorrect Credentials")
+        #         return redirect('App:login')
+        # else:
+        #     messages.error(request, "Incorrect credentials")
+        #     return render(request, self.template_name, {'form': form})
 
 class ProjectFormView(View):
     form_class = ProjectForm
@@ -132,3 +163,6 @@ def signout(request):
     """logs out the user on request"""
     logout(request)
     return redirect('App:index')
+
+def AboutUs(request):
+    return HttpResponse("aboutus")
