@@ -23,6 +23,7 @@ class Project(models.Model):
     faculty_mentor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='faculty_mentor')
     student_mentor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='student_mentor')
     likes = models.ManyToManyField(User, related_name='likes', blank=True, null=True)
+    file_upload = models.FileField(blank=True, null=True, verbose_name=_("file"))
 
     #class Meta:
     #    verbose_name = _("Project")
