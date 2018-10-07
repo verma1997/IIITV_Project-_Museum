@@ -3,13 +3,27 @@
 {% block content %}
   <div class="container">
     {% for project in project_list %}
-    <ul class="list-group">
+    <!--<ul class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <h1><a href="{% url 'project_detail' pk=project.pk %}">{{ project.title }}</a></h1>
         <span class="badge badge-primary badge-pill">{{ project.likes }}</span>
       </li>
       <p>Published on: {{ project.publlished_date|date:"D M Y" }}</p>
-    </ul>
+    </ul>-->
+    <div class="card" style="width: 18rem;">
+      <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+        <div class="card-body">
+          <h5 class="card-title">{{ project.project_name }}</h5>
+          <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+          <h6>Mentored By:<h6>
+          <p>Faculty: {{ project.faculty_mentor }}</p>
+
+          {% if is.student_mentor %}
+
+          <p>Student Mentor: {{ project.student_mentor }}</p>
+          <a href="#" class="btn btn-primary">More About Project</a>
+        </div>
+    </div>
     {% endfor %}
   </div>
 {% endblock %}
