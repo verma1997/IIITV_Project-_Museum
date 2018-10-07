@@ -156,4 +156,4 @@ def signout(request):
     return redirect('App:index')
 
 def AboutUs(request):
-    return HttpResponse("aboutus")
+    return render(request,"aoutus.html")
