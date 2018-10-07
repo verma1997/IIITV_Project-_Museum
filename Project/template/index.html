@@ -9,8 +9,18 @@
     </div>
     <div class="col-md-4">
       <h1>Log In</h1>
-
     </div>
+
+    {%for p in project%}
+    <ul>
+      <li><b>{{p.Semester}}</b>
+      <br>{{p.course_name}}
+      <br>{{p.project_name}}
+      <br>{{p.project_description}}
+      <br>{{p.members}}
+    </li>
+    </ul>
+    {%endfor%}
   </div>
 </div>
 {% endblock %}

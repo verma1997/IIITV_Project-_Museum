@@ -3,13 +3,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.views import View
-
 from App.forms import LoginForm, RegisterForm
 from App.models import Project
 
 
 def index(request):
-    return render(request, 'index.html')
+    project=Project()
+    p=Project.objects.all()
+    return render(request, 'index.html',{'project':p})
 
 
 class LoginFormView(View):
