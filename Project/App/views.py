@@ -24,26 +24,17 @@ class ProjectFormView(View):
 
     # authenticates user request
     def post(self, request):
-        pass
-        # form = self.form_class(request.POST)
 
-        # if form.is_valid():
+        form = self.form_class(request.POST)
 
-        #     username = form.cleaned_data['username']
-        #     password = form.cleaned_data['password']
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.save()
+            return redirect('/')
+        else:
+            messages.error(request, "Incorrect credentials")
+            return render(request, self.template_name, {'form': form})
 
-        #     user = authenticate(username=username, password=password)
-        #     print(user)
-        #     if user is not None:
-        #         login(request, user)
-        #         messages.success(request, "Logged in Successfully")
-        #         return redirect('/')
-        #     else:
-        #         messages.error(request, "Incorrect Credentials")
-        #         return redirect('App:login')
-        # else:
-        #     messages.error(request, "Incorrect credentials")
-        #     return render(request, self.template_name, {'form': form})
 
 
 class LoginFormView(View):

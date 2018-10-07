@@ -20,9 +20,9 @@ class Project(models.Model):
     project_description=models.TextField(max_length=100)
     member=models.ForeignKey(User,on_delete=models.CASCADE)
     date=models.DateTimeField(auto_now_add=True)
-    like=models.IntegerField(default=0)
-
-
+    faculty_mentor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='faculty_mentor')
+    student_mentor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='student_mentor')
+    likes = models.ManyToManyField(User, related_name='likes', blank=True, null=True)
 
     class Meta:
         verbose_name = _("Project")
