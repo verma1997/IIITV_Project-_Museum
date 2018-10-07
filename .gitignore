@@ -1,6 +1,0 @@
-Project/venv
-Project/.vscode
-Project/App/__pycache__
-Project/Project/__pycache__
-Project/App/migrations/__pycache__
-Project/db.sqlite3
