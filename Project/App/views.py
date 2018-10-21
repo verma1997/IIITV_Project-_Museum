@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.views import View
+from django.db.models import Count
+from django.contrib.auth.models import User
 from App.forms import LoginForm, RegisterForm
 
 from App.forms import LoginForm, RegisterForm, ProjectForm
@@ -10,15 +12,23 @@ from App.models import Project
 
 
 def index(request):
-    #project=Project()
     projects=Project.objects.all()
     return render(request, 'index.html',{'projects':projects})
 
 def project_detail(request, pk):
-    print(pk)
     project = Project.objects.get(pk=pk)
-    print(project)
     return render(request, './project_detail.html', {'project': project})
+
+def leaderboard(request):
+    projects = Project.objects.all().annotate(like_count=Count('likes')).order_by('-like_count')
+    return render(request, 'leaderboard.html', {'projects': projects})
+
+def liked(request, pk):
+    return redirect('App:project-detail', pk=pk)
+
+def delete(request, pk):
+    Project.objects.get(pk=pk).delete()
+    return redirect('App:index')
 
 class ProjectFormView(View):
     form_class = ProjectForm

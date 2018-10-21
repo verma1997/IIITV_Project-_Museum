@@ -15,18 +15,17 @@
         <div class="card-body">
           <h5 class="card-title">{{ project.project_name }}</h5>
           <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-          {% if project.faculty%}
-          <h6>Mentored By<h6>
-          <p>Faculty: {{ project.faculty }}</p>
+          {% if project.faculty_mentor%}
+          <h6>Mentored By:<h6>
+          <p>Faculty: {{ project.faculty_mentor }}</p>
           {% endif %}
           {% if project.student_mentor %}
+
             <p>Student Mentor: {{ project.student_mentor }}</p>
           {% endif %}
-          Likes: {{project.likes.count}} <br>
-          Uploaded On: {{project.date}}<br><br>
           <a href='{% url "App:project-detail" project.id %}' class="btn btn-primary">More About Project</a>
         </div>
     </div>
     {%endfor%}
-  </div>
+
 {% endblock %}
