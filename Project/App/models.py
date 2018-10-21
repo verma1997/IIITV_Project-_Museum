@@ -14,20 +14,20 @@ class Project(models.Model):
             ('SIX','VI'),
             ('SEVEN','VII'),
             ('EIGHT','VIII'),)
-    semester=models.CharField(max_length=100,choices=CHOICES)
+    semester=models.CharField(max_length=100,choices=CHOICES, default='ONE')
     course_name=models.CharField(max_length=100)
     project_name=models.CharField(max_length=100)
     project_description=models.TextField(max_length=100)
     member=models.ForeignKey(User,on_delete=models.CASCADE)
     date=models.DateTimeField(auto_now_add=True)
-    faculty_mentor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='faculty_mentor')
+    faculty = models.ForeignKey(User, on_delete=models.CASCADE, related_name='faculty', null=False, default='')
     student_mentor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='student_mentor')
-    likes = models.ManyToManyField(User,blank=True,null=True,related_name='likes')
-    file_upload = models.FileField(blank=True, null=True, verbose_name=_("file"))
+    likes = models.ManyToManyField(User,blank=True,related_name='likes')
+    file_upload = models.FileField(blank=True, null=True, verbose_name=_("file"), upload_to='')
 
-    #class Meta:
-    #    verbose_name = _("Project")
-    #    verbose_name_plural = _("Projects")
+    class Meta:
+       verbose_name = _("Project")
+       verbose_name_plural = _("Projects")
 
     def __str__(self):
         return self.semester + "  " + self.course_name + " " + self.project_name

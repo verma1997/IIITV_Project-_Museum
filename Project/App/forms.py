@@ -7,7 +7,7 @@ class ProjectForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = ['semester', 'course_name', 'project_name', 'project_description', 'member', 'faculty_mentor', 'file_upload']
+        fields = ['semester', 'course_name', 'project_name', 'project_description', 'member', 'faculty','student_mentor', 'file_upload']
 
 
 class LoginForm(forms.Form):
