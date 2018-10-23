@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Register{% endblock %}
 {% block content %}
-    {% if messages %}
+    {% comment %} {% if messages %}
         <ul class="messages">
             <!--looping through messages-->
             {% for message in messages %}
@@ -15,7 +15,7 @@
                 {#                    class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
             {% endfor %}
         </ul>
-    {% endif %}
+    {% endif %} {% endcomment %}
     <div class="container">
         <div class="row">
             <h2 style="text-align: center;">Register</h2>
@@ -45,6 +45,7 @@
                 </div>
                 <!-- Displaying Form -->
                 </form>
+                Already Registered! <a href="/login">Sign In</a>
             </div>
             <div class="col-md-2"></div>
         </div>

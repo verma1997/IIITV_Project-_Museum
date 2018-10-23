@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Login{% endblock %}
 {% block content %}
-hrllo
-    {% if messages %}
+    {% comment %} {% if messages %}
         <ul class="messages">
             <!--looping through messages-->
             {% for message in messages %}
@@ -16,7 +15,7 @@ hrllo
                 {# class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
             {% endfor %}
         </ul>
-    {% endif %}
+    {% endif %} {% endcomment %}
     <div class="container">
         <div class="row">
             <h2 style="text-align: center;">Login</h2>
@@ -48,6 +47,7 @@ hrllo
                 </div>
                 <!-- Displaying Form -->
                 </form>
+                Not Registered? <a href="/register">Sign Up</a>
             </div>
             <div class="col-md-2"></div>
         </div>

@@ -5,6 +5,7 @@ from django.http import HttpResponse, Http404
 from django.views import View
 from django.db.models import Count
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 from App.forms import LoginForm, RegisterForm
 
 from App.forms import LoginForm, RegisterForm, ProjectForm
@@ -12,7 +13,7 @@ from App.models import Project
 
 
 def index(request):
-    projects=Project.objects.all()
+    projects=Project.objects.all().order_by('-date')
     return render(request, 'index.html',{'projects':projects})
 
 def project_detail(request, pk):
@@ -24,6 +25,15 @@ def leaderboard(request):
     return render(request, 'leaderboard.html', {'projects': projects})
 
 def liked(request, pk):
+    project = Project.objects.get(pk=pk)
+
+    try:
+        user = project.likes.get(pk=request.user.id)
+        if user:
+            project.likes.remove(user)
+    except:
+        project.likes.add(request.user)
+
     return redirect('App:project-detail', pk=pk)
 
 def delete(request, pk):
@@ -43,46 +53,21 @@ class ProjectFormView(View):
 
     # authenticates user request
     def post(self, request):
-        pass
-        # form = self.form_class(request.POST)
 
-        # if form.is_valid():
-
-        #     username = form.cleaned_data['username']
-        #     password = form.cleaned_data['password']
-
-        #     user = authenticate(username=username, password=password)
-        #     print(user)
-        #     if user is not None:
-        #         login(request, user)
-        #         messages.success(request, "Logged in Successfully")
-        #         return redirect('/')
-        #     else:
-        #         messages.error(request, "Incorrect Credentials")
-        #         return redirect('App:login')
-        # else:
-        #     messages.error(request, "Incorrect credentials")
-        #     return render(request, self.template_name, {'form': form})
-
-class ProjectFormView(View):
-    form_class = ProjectForm
-    template_name = 'form_project.html'
-
-    # sends query and form on request
-    def get(self, request):
-        form = self.form_class(None)
-        print(form)
-        return render(request, self.template_name,
-                      {'form': form})
-
-    # authenticates user request
-    def post(self, request):
-
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
 
         if form.is_valid():
             project = form.save(commit=False)
             project.save()
+            # print(project.faculty.email)
+            subject = "Invitation for being mentor"
+            content = "Hey,\n" + str(project.member.username) + " has invited you to be the mentor for project" + str(project.project_name) + "!"
+            from_email = project.member.email
+            to = [project.faculty.email,]
+            msg = EmailMessage(subject, content, from_email, to)
+            print(subject)
+            print(content)
+            # msg.send()
             return redirect('/')
         else:
             messages.error(request, "Incorrect credentials")
