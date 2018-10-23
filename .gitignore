@@ -4,3 +4,4 @@ Project/App/__pycache__
 Project/db.sqlite3
 Project/App/migrations/__pycache__
 Project/venv
+Project/media
