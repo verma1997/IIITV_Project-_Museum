@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Project(models.Model):
-    CHOICES=(('ONE','I'),
+    SEMESTER=(('ONE','I'),
             ('TWO','II'),
             ('THREE','III'),
             ('FOUR','IV'),
@@ -14,13 +14,34 @@ class Project(models.Model):
             ('SIX','VI'),
             ('SEVEN','VII'),
             ('EIGHT','VIII'),)
-    semester=models.CharField(max_length=100,choices=CHOICES, default='ONE')
-    course_name=models.CharField(max_length=100)
+    
+    COURSE_NAME = (
+        (('Introduction To Programming'), ('Introduction To Programming')),
+        (('Intro To Information Technology'), ('Intro To Information Technology')),
+        (('Information Society'), ('Information Society')),
+        (('Database Management System'), ('Database Management System')),
+        (('Operating System'), ('Operating System')),
+        (('Computer Networks'), ('Computer Networks')),
+        (('Software Engineering'), ('Software Engineering')),
+        (('Web Technology'), ('Web Technology')),
+    )
+
+    FACULTY = (
+        (('Dr Naveen Kumar'),('Dr Naveen Kumar')),
+        (('Dr Manik Lal Das'), ('Dr Manik Lal Das')),
+        (('Dr P M Jat'), ('Dr P M Jat')),
+        (('Dr Ashish Phophalia'), ('Dr Ashish Phophalia')),
+        (('Dr Asim Banerjee'), ('Dr Asim Banerjee')),
+        (('Mr Santosh Bharti'), ('Mr Santosh Bharti')),
+    )
+    semester=models.CharField(max_length=100, choices=SEMESTER, default='ONE')
+    course_name=models.CharField(max_length=100, choices=COURSE_NAME, default='Introduction To Programming')
     project_name=models.CharField(max_length=100)
     project_description=models.TextField(max_length=100)
     member=models.ForeignKey(User,on_delete=models.CASCADE)
     date=models.DateTimeField(auto_now_add=True)
-    faculty = models.ForeignKey(User, on_delete=models.CASCADE, related_name='faculty', null=False, default='')
+    # faculty = models.ForeignKey(User, on_delete=models.CASCADE, related_name='faculty', null=False, default='')
+    faculty = models.CharField(max_length=100, choices=FACULTY, default='')
     student_mentor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='student_mentor')
     likes = models.ManyToManyField(User,blank=True,related_name='likes')
     file_upload = models.FileField(blank=True, null=True, verbose_name=_("file"), upload_to='')

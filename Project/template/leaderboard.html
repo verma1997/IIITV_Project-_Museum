@@ -2,31 +2,20 @@
 
 {% block content %}
 
- <div class="container">
-  <div class="row">
-    <div class="col-md-8">
-    </div>
-    <div class="col-md-4">
-    </div>
-    {%for project in projects%}
-    <div class="card" style="width: 18rem; margin:10px;">
-
-      <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+<div class="container">
+  <br>
+  <h1>Leaderboard</h1><br>
+   {% for project in projects %}
+    <div class="card border-secondary mb-3" style="max-width: 50rem;">
+        <div class="card-header"><h2>{{ project.project_name }}</h2></div>
         <div class="card-body">
-          <h5 class="card-title">{{ project.project_name }}</h5>
-          <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-          {% if project.faculty_mentor%}
-          <h6>Mentored By:<h6>
-          <p>Faculty: {{ project.faculty_mentor }}</p>
-          {% endif %}
           {% if project.student_mentor %}
-            <p>Student Mentor: {{ project.student_mentor }}</p>
+            <p class="card-text"><strong>Student Mentor : </strong>{{ project.student_mentor }}</p>
           {% endif %}
-          Likes: {{project.likes.count}}
-          <br>
-          <a href='{% url "App:project-detail" project.id %}' class="btn btn-primary">More About Project</a>
+          <p class="card-text"><strong>Likes : </strong>{{ project.likes.count }}</p>
+          <a href='{% url "App:project-detail" project.id %}' class="btn btn-success">More About Project</a>
         </div>
     </div>
-    {%endfor%}
-
+    {% endfor %}
+</div>
 {% endblock %}
