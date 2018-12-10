@@ -7,8 +7,8 @@
     <title>Project Museum | IIIT Vadodara</title>
   </head>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+      <!--Bootstrap 4 -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- jQuery library -->
 
     <!-- Popper JS -->
@@ -21,14 +21,18 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <script src="{% static 'js/main.js' %}"></script>
 
   <body>
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
-          <a href="/"class="navbar-brand" style="color: white">PM-IIITV</a>
+          <a href="/" class="navbar-brand" style="color: white;">
+            <strong>Project Museum</strong>
+          </a>
           <ul class="navbar-nav">
-            <li class="nav-item"><a href="{% if request.user.is_anonymous %}/login{%else%}/project-form{%endif%}" class="nav-link">Add project</a></li>
+            <li class="nav-item"><a href="{% if request.user.is_anonymous %}/login{% else %}/project-form{% endif %}" class="nav-link">Add project</a></li>
             <li class="nav-item"><a href="/leaderboard" class="nav-link">Leaderboard</a></li>
           </ul>
           <ul class="nav justify-content-end">
@@ -43,9 +47,12 @@
               </li>
             {% else %}
             <li class="nav-item">
-              <a href="#"><button type="button" class="btn btn-outline-success">{{request.user}}</button></a>
+              <h5 style="color: white;">Welcome ! {{ request.user }}</h5>
             </li>
-            &nbsp;
+            {% comment %} <li class="nav-item">
+              <a href="#"><button type="button" class="btn btn-outline-success">{{request.user}}</button></a>
+            </li> {% endcomment %}
+            &nbsp;&nbsp;&nbsp;
             <li class="nav-item">
               <a href="/logout"><button type="button" class="btn btn-outline-success">Logout</button></a>
             </li>
@@ -58,8 +65,6 @@
 
           {% endblock%}
       </div>
-      <!-- <footer style="color:black; margin-top:auto; margin-bottom:0px; bottom: 0px;">
-        <p >Team ENCORE IIIT Vadodara</p>
-      </footer> -->
+    </div>
     </body>
 </html>

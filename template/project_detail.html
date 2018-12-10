@@ -1,77 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- <div class="container">
-  {% for project in projects %}
-  <div class="card">
-    <h1 class="card-header">{{ project.project_name }}</h1>
-    <div class="card-body">
-      <p><strong>Published on : </strong>{{ project.date }}</p>
-      <p><strong>Semester : </strong>{{ project.semester }}</p>
-      <p><strong>Course : </strong>{{ project.course_name }}</p>
-      <p><strong>Submitted By : </strong>{{ project.member }}</p>
-      {% if project.faculty %}
-        <p><strong>Faculty : </strong>{{ project.faculty }}</p>
-      {% endif %}
-      {% if project.student_mentor %}
-        <p><strong>Student Mentor : </strong>{{ project.student_mentor }}</p>
-      {% endif %}
-      {% if user.is_authenticated %}
-        <a class="btn btn-primary" href="{% url 'App:liked' project.pk %}">{{project.likes.count}}Likes<span class="glyphicon glyphicon-user"></span></a>
-      {% else %}
-        <a class="btn btn-primary" href="/login">{{project.likes.count}}Likes</a>
-      {% endif %}
-      {% if project.member == request.user%}
-        <a class="btn btn-primary" href="{% url 'App:delete' project.pk %}"><span class="glyphicon glyphicon-remove">Delete</span></a>
-      {%endif%}
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h1>{{ project.project_name }}</h1>
+        </div>
+        <div class="card-body">
+          <p><strong>Published on : </strong>{{ project.date }}</p>
+          <p><strong>Semester : </strong>{{ project.semester }}</p>
+          <p><strong>Course : </strong>{{ project.course_name }}</p>
+          <p><strong>Submitted By : </strong>{{ project.member }}</p>
+          {% if project.faculty %}
+            <p><strong>Faculty : </strong>{{ project.faculty }}</p>
+          {% endif %}
+          {% if project.student_mentor %}
+            <p><strong>Student Mentor : </strong>{{ project.student_mentor }}</p>
+          {% endif %}
+          {% if user.is_authenticated %}
+            <a class="btn btn-primary" href="{% url 'App:liked' project.pk %}">{{ project.likes.count }} Likes</span></a>
+          {% else %}
+            <a class="btn btn-primary" href="/login">{{project.likes.count}}Likes</a>
+          {% endif %}
+          {% if project.member == request.user %}
+            <a class="btn btn-primary" href="{% url 'App:delete' project.pk %}">Delete</span></a>
+          {% endif %}
+        </div>
+      </div>
+      <h2>Description</h2>
+      <p>{{ project.project_description }}</p>
+      {% comment %} <a class="btn btn-lg btn-secondary" href="#">Want To Continue Project</a>
+      &nbsp;&nbsp;
+      <a class="btn btn-lg btn-secondary" href="#">Contact The Member</a> {% endcomment %}
     </div>
   </div>
-  <div class="card">
-    <h2 class="card-header">Description</h2>
-    <div class="card-body">
-      <p>{{ project.project_description}}</p>
-    </div>
-  </div>
-  {% endfor %}
-</div>   -->
-
-
-  <div class="x">
-    <h1>{{ project.project_name }}</h1>
-    <p>Published on: {{ project.date }}</p>
-  </div>
-  <div class="y">
-    <p>Semester: {{ project.semester }}<p>
-  </div>
- <div class="y">
-    <p>Course: {{ project.course_name }}<p>
-  </div>
-  <div class="y">
-    <p>Made by: {{ project.member }}<p>
-  </div>
-  <div class="y">
-    <p>{% if project.faculty %}Faculty: {{ project.faculty }}{% endif %}<p>
-  </div>
-  <div class="y">
-    <p>Description: {{ project.project_description }}<p>
-  </div>
-  <div class="y">
-    <p>{% if project.student_mentor %}Student Mentor: {{ project.student_mentor }}{% endif %}<p>
-  </div>
-
-   <div class="y">
-
-  {% if project.file_upload %}
-    <p>Attachement: <a href="/{{project.file_upload.url}}" target="_blank">{{ project.file_upload }}</a><p>
-  {% endif %}
-  </div>
-
-  {% if user.is_authenticated %}
-      <a class="btn btn-primary" href="{% url 'App:liked' project.pk %}">{{project.likes.count}}Likes</a>
-  {% else %}
-    <a class="btn btn-primary" href="/login"><span class="glyphicon glyphicon-pencil">{{project.likes.count}}Likes</span></a>
-  {% endif %}
-  {% if project.member == request.user%}
-    <a class="btn btn-primary" href="{% url 'App:delete' project.pk %}"><span class="glyphicon glyphicon-remove">Delete</span></a>
-  {%endif%}
+</div>
 {% endblock %}

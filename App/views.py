@@ -63,8 +63,8 @@ class ProjectFormView(View):
             subject = "Invitation for being mentor"
             content = "Hey,\n" + str(project.member.username) + " has invited you to be the mentor for project" + str(project.project_name) + "!"
             from_email = project.member.email
-            to = [project.faculty.email,]
-            msg = EmailMessage(subject, content, from_email, to)
+            # to = [project.faculty.email,]
+            # msg = EmailMessage(subject, content, from_email, to)
             print(subject)
             print(content)
             # msg.send()

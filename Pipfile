@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+certifi = "==2018.4.16"
+cffi = "==1.11.5"
+"django-bootstrap3" = "==10.0.1"
+django-crispy-forms = "==1.7.2"
+pycparser = "==2.19"
+python-dateutil = "==2.7.3"
+pytz = "==2018.4"
+six = "==1.11.0"
+text-unidecode = "==1.2"
+wincertstore = "==0.2"
+Django = "==2.0.5"
+Faker = "==0.8.16"
+"autopep8" = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"

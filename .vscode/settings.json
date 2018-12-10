@@ -1,3 +1,4 @@
 {
-    "python.linting.pylintEnabled": false
+    "python.linting.pylintEnabled": false,
+    "python.pythonPath": "C:\\Users\\Panda\\.virtualenvs\\IIITV_Project-_Museum-IK1Il7U6\\Scripts\\python.exe"
 }

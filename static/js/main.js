@@ -1,32 +1,21 @@
 
-// Get the elements with class="column"
-var elements = document.getElementsByClassName("column");
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
 
-// Declare a loop variable
-var i;
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
 
-// List View
-function listView() {
-  for (i = 0; i < elements.length; i++) {
-    elements[i].style.width = "100%";
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
   }
 }
-
-// Grid View
-function gridView() {
-  for (i = 0; i < elements.length; i++) {
-    elements[i].style.width = "100%";
-  }
-}
-
-/* Optional: Add active class to the current button (highlight it) */
-var container = document.getElementById("btnContainer");
-var btns = container.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function(){
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
-}
-

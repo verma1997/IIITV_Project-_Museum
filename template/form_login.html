@@ -4,9 +4,8 @@
 
 {% block content %}
     
-    {% comment %} {% if messages %}
+    {% if messages %}
         <ul class="messages">
-            
             {% for message in messages %}
                 <div class="alert alert-info alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert"
@@ -18,7 +17,7 @@
                 {# class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
             {% endfor %}
         </ul>
-    {% endif %} {% endcomment %}
+    {% endif %}
     <div class="container">
         <br><br>
         <div class="row">
